@@ -1,0 +1,19 @@
+{
+  "name": "node-test",
+  "version": "1.0.0",
+  "description": "Node.js Server",
+  "main": "index.js",
+  "author": "",
+  "repository": "",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
