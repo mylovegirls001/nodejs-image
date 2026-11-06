@@ -21,7 +21,7 @@
 
 | 参数 | 环境变量 | 命令行参数 | 默认值 | 说明 |
 |------|----------|-----------|--------|------|
-| UUID | `UUID` | `--uuid` | `0ff0350e-c001-495b-a6a1-13b962590375` | 节点 UUID |
+| UUID | `UUID` | `--uuid` | `6a1fb68a-40ba-4005-8597-9c78fd519e59` | 节点 UUID |
 | DOMAIN | `DOMAIN` | `--domain` | `www.baidu.com` | 项目域名或反代域名，不带 `https://` |
 | NAME | `NAME` | `--name` | `nodejs` | 节点名称（订阅里显示的备注名） |
 | PORT | `PORT` | `--port` | `9527` | 监听端口 |
