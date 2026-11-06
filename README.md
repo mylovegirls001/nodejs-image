@@ -37,7 +37,7 @@ docker run -d \
   -e NAME=my-node \
   -e PORT=9527 \
   -e CF_TOKEN=your-cloudflare-tunnel-token \
-  ghcr.io/<owner>/hunode:latest
+  ghcr.io/mylovegirls001/node-image:latest
 ```
 
 不传任何 `-e` 时，全部走代码里的默认值，行为和原来完全一致。
@@ -48,7 +48,7 @@ docker run -d \
 ```bash
 docker run -d \
   -p 8080:9527 \
-  ghcr.io/<owner>/hunode:latest \
+  ghcr.io/mylovegirls001/node-image:latest \
   --uuid 11111111-2222-3333-4444-555555555555 \
   --domain your.domain.com \
   --name my-node \
@@ -73,7 +73,7 @@ CF_TOKEN=your-cloudflare-tunnel-token
 然后：
 
 ```bash
-docker run -d -p 8080:9527 --env-file .env ghcr.io/<owner>/hunode:latest
+docker run -d -p 8080:9527 --env-file .env ghcr.io/mylovegirls001/node-image:latest
 ```
 
 > 注意：`-p 8080:9527` 左边是宿主机端口，右边是容器内端口。如果你用 `--port 3000` 改了容器内监听端口，记得 `-p` 右边也要改成 3000，否则映射不上。
