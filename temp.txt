@@ -152,7 +152,7 @@ async function startCloudflared(token) {
   }
 
   console.log('[cloudflared] 正在启动隧道...');
-  cloudflared = spawn(binaryPath, ['tunnel', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', token]);
+  cloudflared = spawn(binaryPath, ['tunnel', '--no-autoupdate', 'run', '--token', token]);
 
   // 把 cloudflared 的日志透传到主进程，加前缀便于区分
   cloudflared.stdout.on('data', (data) => {
