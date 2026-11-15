@@ -11,7 +11,7 @@ const { WebSocket, createWebSocketStream } = require('ws');
 // ---------------------------------------------------------------------------
 // 代码里的默认值：没有传任何参数时使用
 const DEFAULTS = {
-  UUID:     '0ff0350e-c001-495b-a6a1-13b962590376',
+  UUID:     '0ff0350e-c001-495b-a6a1-13b962590375',
   DOMAIN:   'www.baidu.com', // 项目域名或已反代的域名，不带前缀，建议填已反代的域名
   NAME:     'nodejs',
   PORT:     9527,
