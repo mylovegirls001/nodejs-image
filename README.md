@@ -21,27 +21,21 @@
 
 | 参数 | 环境变量 | 命令行参数 | 默认值 | 说明 |
 |------|----------|-----------|--------|------|
-| UUID | `UUID` | `--uuid` | `6a1fb68a-40ba-4005-8597-9c78fd519e59` | 节点 UUID |
-| DOMAIN | `DOMAIN` | `--domain` | `www.baidu.com` | 项目域名或反代域名，不带 `https://` |
-| NAME | `NAME` | `--name` | `nodejs` | 节点名称（订阅里显示的备注名） |
-| PORT | `PORT` | `--port` | `9527` | 监听端口 |
-| CF_TOKEN | `CF_TOKEN` | `--cf-token` | （空） | Cloudflare Tunnel token，留空则不启动隧道 |
+| PORT | `PORT`| `--port`  | `9527` | 监听端口 |
+| TC | | `TC`| `--cf-token` | （空） | Cloudflare Tunnel token，留空则不启动隧道 |
 
 ### 方式一：环境变量（推荐，最简单）
 
 ```bash
 docker run -d \
   -p 8080:9527 \
-  -e UUID=11111111-2222-3333-4444-555555555555 \
-  -e DOMAIN=your.domain.com \
-  -e NAME=my-node \
   -e PORT=9527 \
-  -e CF_TOKEN=your-cloudflare-tunnel-token \
+  -e TC=your-cloudflare-tunnel-token \
   ghcr.io/mylovegirls001/node-image:latest
 ```
 
 不传任何 `-e` 时，全部走代码里的默认值，行为和原来完全一致。
-不传 `CF_TOKEN` 时，cloudflared 不启动，只有 HTTP + WebSocket 服务。
+不传 `TC` 时，cloudflared 不启动，只有 HTTP + WebSocket 服务。
 
 ### 方式二：命令行参数
 
@@ -49,25 +43,19 @@ docker run -d \
 docker run -d \
   -p 8080:9527 \
   ghcr.io/mylovegirls001/node-image:latest \
-  --uuid 11111111-2222-3333-4444-555555555555 \
-  --domain your.domain.com \
-  --name my-node \
   --port 9527 \
-  --cf-token your-cloudflare-tunnel-token
+  --TC your-cloudflare-tunnel-token
 ```
 
-也支持等号写法：`--uuid=xxx --port=8080 --cf-token=xxx`。
+也支持等号写法：`--port=8080 --TC=xxx`。
 
 ### 方式三：env-file（参数多时更清爽）
 
 先写一个 `.env` 文件：
 
 ```env
-UUID=11111111-2222-3333-4444-555555555555
-DOMAIN=your.domain.com
-NAME=my-node
 PORT=9527
-CF_TOKEN=your-cloudflare-tunnel-token
+TC=your-cloudflare-tunnel-token
 ```
 
 然后：
@@ -80,7 +68,7 @@ docker run -d -p 8080:9527 --env-file .env ghcr.io/mylovegirls001/node-image:lat
 
 ### Cloudflare Tunnel 说明
 
-`CF_TOKEN` 是在 Cloudflare Zero Trust 面板创建 Named Tunnel 后拿到的 token。
+`TC` 是在 Cloudflare Zero Trust 面板创建 Named Tunnel 后拿到的 token。
 隧道的 ingress 规则（把哪个域名代理到本地哪个端口）在 Cloudflare 面板上配置，
 代码里只负责用 token 启动 `cloudflared tunnel run`。
 
@@ -95,7 +83,7 @@ cloudflared 二进制由 index.js 在运行时自动获取，无需手动安装�
 
 ```bash
 npm install                          # 先装依赖
-CF_TOKEN=xxx pm2 start index.js --name vless-node
+TC=xxx pm2 start index.js --name vless-node
 ```
 
 pm2 方式无需手动安装 cloudflared，index.js 会自动下载。
