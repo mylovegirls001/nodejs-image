@@ -28,8 +28,8 @@
 
 ```bash
 docker run -d \
-  -p 8080:9527 \
-  -e PORT=9527 \
+  -p 8080:3000 \
+  -e PORT=3000 \
   -e TC=your-cloudflare-tunnel-token \
   ghcr.io/mylovegirls001/node-image:latest
 ```
@@ -41,9 +41,9 @@ docker run -d \
 
 ```bash
 docker run -d \
-  -p 8080:9527 \
+  -p 8080:3000 \
   ghcr.io/mylovegirls001/node-image:latest \
-  --port 9527 \
+  --port 3000 \
   --TC your-cloudflare-tunnel-token
 ```
 
@@ -54,17 +54,17 @@ docker run -d \
 先写一个 `.env` 文件：
 
 ```env
-PORT=9527
+PORT=3000
 TC=your-cloudflare-tunnel-token
 ```
 
 然后：
 
 ```bash
-docker run -d -p 8080:9527 --env-file .env ghcr.io/mylovegirls001/node-image:latest
+docker run -d -p 8080:3000 --env-file .env ghcr.io/mylovegirls001/node-image:latest
 ```
 
-> 注意：`-p 8080:9527` 左边是宿主机端口，右边是容器内端口。如果你用 `--port 3000` 改了容器内监听端口，记得 `-p` 右边也要改成 3000，否则映射不上。
+> 注意：`-p 8080:3000` 左边是宿主机端口，右边是容器内端口。如果你用 `--port 3000` 改了容器内监听端口，记得 `-p` 右边也要改成 3000，否则映射不上。
 
 ### Cloudflare Tunnel 说明
 
